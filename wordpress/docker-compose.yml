@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7-debian
+    container_name: db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - db-data:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - wordpress-net
+  
+  wordpress:
+    depends_on: 
+      - db
+    build: .
+    container_name: wordpress
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: $MYSQL_USER
+      WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress-vol:/var/www/html
+    networks:
+      - wordpress-net
+
+  nginx:
+    depends_on:
+      - wordpress
+    image: nginx:1.23.3-alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - wordpress-vol:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+    networks:
+      - wordpress-net
+
+networks:
+  wordpress-net:
+    driver: bridge
+
+volumes:
+  wordpress-vol:
+  db-data:
