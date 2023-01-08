@@ -1,4 +1,5 @@
 DEV_CMD=docker compose -f ./wordpress/docker-compose.yml
+PROD_CMD=docker compose -f ./wordpress/docker-compose.prod.yml
 
 run:
 	${DEV_CMD} up -d
@@ -21,5 +22,17 @@ remove-all:
 view:
 	${DEV_CMD} ps
 
-pull:
-	${DEV_CMD} pull
+prod-run:
+	${PROD_CMD} up -d
+
+prod-rebuild:
+	${PROD_CMD} up -d --build
+
+prod-stop:
+	${PROD_CMD} stop
+
+prod-remove:
+	${PROD_CMD} down
+
+prod-view:
+	${PROD_CMD} ps
