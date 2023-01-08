@@ -27,7 +27,7 @@ services:
       - 8080:80
     volumes:
       - wordpress-vol:/var/www/html
-      - ../nginx:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
     networks:
       - wordpress-net
 
