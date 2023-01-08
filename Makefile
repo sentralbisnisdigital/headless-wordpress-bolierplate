@@ -1,17 +1,25 @@
-run-dev:
-	docker compose -f ./wordpress/docker-compose.yml up -d
+DEV_CMD=docker compose -f ./wordpress/docker-compose.yml
+
+run:
+	${DEV_CMD} up -d
 
 run-debug:
-	docker compose -f ./wordpress/docker-compose.yml up
+	${DEV_CMD} up
 
 run-build:
-	docker compose -f ./wordpress/docker-compose.yml up --build -d
+	${DEV_CMD} up --build -d
 
 stop:
-	docker compose -f ./wordpress/docker-compose.yml down
+	${DEV_CMD} stop
 
-purge:
-	docker compose -f ./wordpress/docker-compose.yml down --volumes
+remove:
+	${DEV_CMD} down
+
+remove-all:
+	${DEV_CMD} down --volumes
 
 view:
-	docker compose -f ./wordpress/docker-compose.yml ps
+	${DEV_CMD} ps
+
+pull:
+	${DEV_CMD} pull
