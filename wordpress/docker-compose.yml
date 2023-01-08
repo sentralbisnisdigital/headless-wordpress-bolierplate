@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: mysql:5.7-debian
+    image: mysql:8.0-debian
     container_name: db
     restart: unless-stopped
     env_file: .env
