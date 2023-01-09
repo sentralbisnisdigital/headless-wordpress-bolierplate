@@ -1,5 +1,5 @@
-DEV_CMD=docker compose -f ./wordpress/docker-compose.yml
-PROD_CMD=docker compose -f ./wordpress/docker-compose.prod.yml
+DEV_CMD=docker compose -f ./wordpress/docker-compose.yml --env-file .env
+PROD_CMD=docker compose -f ./wordpress/docker-compose.prod.yml --env-file .env.prod
 
 run:
 	${DEV_CMD} up -d

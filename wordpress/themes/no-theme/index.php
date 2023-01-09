@@ -1,4 +1,4 @@
 <?php
-	wp_redirect( site_url('graphql') );
+	wp_redirect( site_url('wp-admin') );
 	exit;
 ?>
