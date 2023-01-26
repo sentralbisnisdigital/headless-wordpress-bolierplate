@@ -1,5 +1,5 @@
-DEV_CMD=docker compose -f ./wordpress/docker-compose.yml --env-file .env
-PROD_CMD=docker compose -f ./wordpress/docker-compose.prod.yml --env-file .env.prod
+DEV_CMD=docker compose
+PROD_CMD=docker compose -f ./docker-compose.prod.yml --env-file .env.prod
 
 run:
 	${DEV_CMD} up -d
@@ -17,7 +17,7 @@ remove:
 	${DEV_CMD} down
 
 remove-all:
-	${DEV_CMD} down --volumes
+	${DEV_CMD} down --volumes --remove-orphans
 
 view:
 	${DEV_CMD} ps

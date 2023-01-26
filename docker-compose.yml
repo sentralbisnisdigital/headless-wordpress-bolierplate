@@ -1,10 +1,24 @@
 version: "3"
 
 services:
+  db:
+    image: mariadb:10.10.2
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - wordpress-net
+
   wordpress:
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
+    depends_on:
+      - db
+    build: ./wordpress
     container_name: wordpress
     restart: unless-stopped
     environment:
@@ -39,3 +53,4 @@ networks:
 
 volumes:
   wordpress-vol:
+  db-data:

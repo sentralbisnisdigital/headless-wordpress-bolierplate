@@ -29,20 +29,20 @@ Template ini sudah mencakup image berikut:
 
 Untuk mempermudah proses pengembangan dengan menggunakan template ini perintah-perintah docker (`docker compose -f ./wordpress/docker-compose.yml --env-file .env`) sudah dialias dengan menggunakan `Makefile`. Berikut daftar perintah yang tersedia:
 
-| Perintah Alias | Instruksi yang dijalankan | Kegunaan |
-| --- | --- | --- |
-| `make run` | `up -d` | Menjalankan container dalam development mode |
-| `make run-debug` | `up` | Menjalankan container dalam debug mode |
-| `make run-build` | `up --build -d` | Build ulang container dan menjalankannya di development mode |
-| `make stop` | `stop` | Stop container |
-| `make remove` | `down` | Stop dan hapus container (tanpa menghapus seluruh data) |
-| `make remove-all` | `down --volumes` | Stop dan hapus container beserta seluruh data |
-| `make view` | `ps` | Lihat container berjalan |
-| `make prod-run` | `up -d` | Menjalankan container dalam production mode |
-| `make prod-run` | `up --build -d` | Build ulang container dan menjalankannya di production mode |
-| `make prod-run` | `stop` | Stop container (production) |
-| `make prod-run` | `down` | Stop dan hapus container (production) |
-| `make prod-run` | `ps` | Lihat container berjalan (production) |
+| Perintah Alias    | Instruksi yang dijalankan | Kegunaan                                                     |
+| ----------------- | ------------------------- | ------------------------------------------------------------ |
+| `make run`        | `up -d`                   | Menjalankan container dalam development mode                 |
+| `make run-debug`  | `up`                      | Menjalankan container dalam debug mode                       |
+| `make run-build`  | `up --build -d`           | Build ulang container dan menjalankannya di development mode |
+| `make stop`       | `stop`                    | Stop container                                               |
+| `make remove`     | `down`                    | Stop dan hapus container (tanpa menghapus seluruh data)      |
+| `make remove-all` | `down --volumes`          | Stop dan hapus container beserta seluruh data                |
+| `make view`       | `ps`                      | Lihat container berjalan                                     |
+| `make prod-run`   | `up -d`                   | Menjalankan container dalam production mode                  |
+| `make prod-run`   | `up --build -d`           | Build ulang container dan menjalankannya di production mode  |
+| `make prod-run`   | `stop`                    | Stop container (production)                                  |
+| `make prod-run`   | `down`                    | Stop dan hapus container (production)                        |
+| `make prod-run`   | `ps`                      | Lihat container berjalan (production)                        |
 
 ## Jalankan di lingkungan produksi
 
@@ -51,7 +51,7 @@ Untuk menjalankan di lingkungan produksi, template ini juga menyediakan konfigur
 ### Persyaratan
 
 - `docker` dan `docker-compose` terinstal di server lokal/VPS anda.
-- MySQL atau MariaDB terinstal di server lokal/VPS, atau gunakan jasa _hosted database_ seperti AWS RDS, DigitalOcean, dan lain-lain. 
+- MySQL atau MariaDB terinstal di server lokal/VPS, atau gunakan jasa _hosted database_ seperti AWS RDS, DigitalOcean, dan lain-lain.
 
 ### Tata Cara
 
