@@ -1,37 +1,20 @@
 version: "3"
 
 services:
-  db:
-    image: mariadb:10.10.2
-    container_name: db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: ${WORDPRESS_DB_USER}
-      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - wordpress-net
-
   wordpress:
-    depends_on:
-      - db
-    build: ./wordpress
+    build:
+      context: ./wordpress
     container_name: wordpress
     restart: unless-stopped
     environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
-      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_DEFAULT_THEME', 'no-theme');
     volumes:
       - wordpress-vol:/var/www/html
-    networks:
-      - wordpress-net
 
   nginx:
     depends_on:
@@ -44,13 +27,6 @@ services:
     volumes:
       - wordpress-vol:/var/www/html
       - ./nginx:/etc/nginx/conf.d
-    networks:
-      - wordpress-net
-
-networks:
-  wordpress-net:
-    driver: bridge
 
 volumes:
   wordpress-vol:
-  db-data:
