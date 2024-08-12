@@ -1,4 +1,4 @@
-FROM wordpress:6.1-fpm-alpine
+FROM wordpress:6.6-fpm-alpine
 
 WORKDIR /var/www/html/
 
