@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: mariadb:10.10.2
+    image: mariadb:11.6.2@sha256:0a620383fe05d20b3cc7510ebccc6749f83f1b0f97f3030d10dd2fa199371f07
     container_name: db
     restart: unless-stopped
     environment:
